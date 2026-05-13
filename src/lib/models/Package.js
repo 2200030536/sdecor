@@ -33,7 +33,6 @@ PackageSchema.set('toJSON', { virtuals: true });
 PackageSchema.set('toObject', { virtuals: true });
 PackageSchema.index({ category: 1 });
 PackageSchema.index({ subCategory: 1 });
-PackageSchema.index({ slug: 1 });
 PackageSchema.index({ popularity: -1 });
 
 // Prevent model re-compilation error in serverless
