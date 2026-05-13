@@ -9,18 +9,33 @@ import { formatPrice, calculateDiscount } from '@/lib/utils';
 import { Star, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 
-const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+// Use absolute URL for server-side fetch (Next.js requires it in RSC)
+// Priority: NEXT_PUBLIC_API_URL (set in Vercel dashboard) → VERCEL_URL (auto) → localhost
+function getBaseUrl() {
+  if (process.env.NEXT_PUBLIC_API_URL) return process.env.NEXT_PUBLIC_API_URL;
+  // VERCEL_URL is auto-set to the deployment domain (e.g. my-app.vercel.app)
+  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+  // NEXT_PUBLIC_VERCEL_URL is available on the client side too
+  if (process.env.NEXT_PUBLIC_VERCEL_URL) return `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
+  return 'http://localhost:3000';
+}
 
 // Fetch package by slug directly on the server
 async function getPackage(slug) {
   try {
-    const res = await fetch(`${API}/api/packages/${slug}`, {
-      next: { revalidate: 60 }, // revalidate every 60s
+    const base = getBaseUrl();
+    const url = `${base}/api/packages/${slug}`;
+    const res = await fetch(url, {
+      next: { revalidate: 60 },
     });
-    if (!res.ok) return null;
+    if (!res.ok) {
+      console.error(`[getPackage] fetch failed: ${res.status} for url: ${url}`);
+      return null;
+    }
     const data = await res.json();
     return data.success ? data.data : null;
-  } catch {
+  } catch (err) {
+    console.error('[getPackage] error:', err.message);
     return null;
   }
 }
@@ -28,7 +43,8 @@ async function getPackage(slug) {
 // Fetch reviews for a package
 async function getReviews(packageId) {
   try {
-    const res = await fetch(`${API}/api/reviews/${packageId}`, {
+    const base = getBaseUrl();
+    const res = await fetch(`${base}/api/reviews/${packageId}`, {
       next: { revalidate: 30 },
     });
     if (!res.ok) return [];
