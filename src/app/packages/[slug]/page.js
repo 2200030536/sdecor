@@ -9,7 +9,10 @@ import { formatPrice, calculateDiscount } from '@/lib/utils';
 import { Star, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 
-const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+// Use absolute URL for server-side fetch (Next.js requires it in RSC)
+const API = process.env.NEXT_PUBLIC_API_URL
+  || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
+
 
 // Fetch package by slug directly on the server
 async function getPackage(slug) {
