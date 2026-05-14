@@ -55,13 +55,48 @@ async function getReviews(packageId) {
   }
 }
 
+const SITE_URL = 'https://sdecor.vercel.app';
+
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const pkg = await getPackage(slug);
   if (!pkg) return {};
+
+  const pageUrl = `${SITE_URL}/packages/${slug}`;
+  const ogImage = pkg.images?.[0] || `${SITE_URL}/opengraph-image`;
+  const categorySlug = pkg.category.toLowerCase().replace(' ', '-');
+
   return {
-    title: `${pkg.title} | SDecor Patna`,
+    title: pkg.title,
     description: pkg.description,
+    keywords: [
+      `${pkg.category} decoration Patna`,
+      `${pkg.subCategory} Patna`,
+      `${pkg.title} Patna`,
+      'event decoration Patna',
+      'SDecor',
+    ],
+    alternates: { canonical: pageUrl },
+    openGraph: {
+      title: `${pkg.title} | SDecor Patna`,
+      description: pkg.description,
+      url: pageUrl,
+      type: 'website',
+      images: [
+        {
+          url: ogImage,
+          width: 800,
+          height: 600,
+          alt: `${pkg.title} — SDecor Patna`,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${pkg.title} | SDecor Patna`,
+      description: pkg.description,
+      images: [ogImage],
+    },
   };
 }
 
@@ -73,14 +108,59 @@ export default async function PackageDetailPage({ params }) {
   const pkgReviews = await getReviews(pkg._id);
   const discount   = calculateDiscount(pkg.price, pkg.originalPrice);
 
+  const pageUrl = `${SITE_URL}/packages/${slug}`;
+  const categorySlug = pkg.category.toLowerCase().replace(' ', '-');
+
+  const productSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: pkg.title,
+    description: pkg.description,
+    image: pkg.images || [],
+    sku: pkg._id || slug,
+    brand: { '@type': 'Brand', name: 'SDecor' },
+    offers: {
+      '@type': 'Offer',
+      priceCurrency: 'INR',
+      price: pkg.price,
+      priceValidUntil: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+      availability: 'https://schema.org/InStock',
+      url: pageUrl,
+      seller: { '@type': 'Organization', name: 'SDecor' },
+    },
+    aggregateRating: pkg.rating
+      ? {
+          '@type': 'AggregateRating',
+          ratingValue: pkg.rating,
+          reviewCount: pkg.reviewCount || pkgReviews.length || 1,
+          bestRating: 5,
+          worstRating: 1,
+        }
+      : undefined,
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: `${pkg.category} Decorations`, item: `${SITE_URL}/category/${categorySlug}` },
+      { '@type': 'ListItem', position: 3, name: pkg.title, item: pageUrl },
+    ],
+  };
+
   return (
     <div className="pt-16 pb-24 md:pb-8">
+      {/* Structured Data */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+
       {/* Breadcrumb */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        <nav className="flex items-center gap-1 text-xs text-gray-500">
+        <nav className="flex items-center gap-1 text-xs text-gray-500" aria-label="Breadcrumb">
           <Link href="/" className="hover:text-brand transition-colors">Home</Link>
           <ChevronRight size={12} />
-          <Link href={`/category/${pkg.category.toLowerCase().replace(' ','-')}`} className="hover:text-brand transition-colors">{pkg.category}</Link>
+          <Link href={`/category/${categorySlug}`} className="hover:text-brand transition-colors">{pkg.category}</Link>
           <ChevronRight size={12} />
           <span className="text-gray-900 font-medium truncate max-w-[200px]">{pkg.title}</span>
         </nav>

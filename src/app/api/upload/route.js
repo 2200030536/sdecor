@@ -20,8 +20,7 @@ function uploadBuffer(buffer, options) {
   });
 }
 
-// Must opt-out of Next.js body parsing — we handle it via formData()
-export const config = { api: { bodyParser: false } };
+
 
 // POST /api/upload — admin only
 export async function POST(request) {
