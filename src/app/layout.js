@@ -58,6 +58,9 @@ export const metadata = {
     follow: true,
     googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
   },
+  verification: {
+    google: 'fFVAz3dAvpO64kaZIWzmiZUNVDMImZfRxuBKogwsLto',
+  },
 };
 
 const localBusinessSchema = {
