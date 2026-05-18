@@ -1,7 +1,6 @@
 import { Inter } from 'next/font/google';
 import './globals.css';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import PublicShell from '@/components/PublicShell';
 import { AuthProvider } from '@/context/AuthContext';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
@@ -123,9 +122,9 @@ export default function RootLayout({ children }) {
       </head>
       <body className={`${inter.variable} antialiased bg-[#FAFAFA] text-gray-900`}>
         <AuthProvider>
-          <Navbar />
-          <main className="min-h-screen">{children}</main>
-          <Footer />
+          <PublicShell>
+            <main className="min-h-screen">{children}</main>
+          </PublicShell>
         </AuthProvider>
       </body>
     </html>
