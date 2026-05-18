@@ -15,7 +15,7 @@ export default function PackageGrid({ packages }) {
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
       {packages.map((pkg, i) => (
         <div
-          key={pkg.id}
+          key={pkg._id || pkg.id || i}
           className="animate-fade-in-up"
           style={{ animationDelay: `${i * 60}ms`, animationFillMode: 'both' }}
         >

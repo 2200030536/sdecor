@@ -98,7 +98,7 @@ export default function Navbar() {
 
             {/* WhatsApp — desktop */}
             <Link
-              href="https://wa.me/919999999999"
+              href="https://wa.me/919386738937"
               target="_blank"
               rel="noopener noreferrer"
               className="hidden sm:flex items-center gap-2 px-3 py-2 bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-semibold rounded-lg transition-colors shadow-sm"
@@ -108,7 +108,7 @@ export default function Navbar() {
             </Link>
             {/* WhatsApp — mobile icon */}
             <Link
-              href="https://wa.me/919999999999"
+              href="https://wa.me/919386738937"
               target="_blank"
               rel="noopener noreferrer"
               className="sm:hidden p-2 bg-emerald-500 text-white rounded-lg"
@@ -213,7 +213,7 @@ export default function Navbar() {
             <div className="pt-2 border-t border-gray-100 space-y-2">
               {/* WhatsApp */}
               <Link
-                href="https://wa.me/919999999999"
+                href="https://wa.me/919386738937"
                 target="_blank"
                 onClick={() => setMobileOpen(false)}
                 className="flex items-center justify-center gap-2 w-full py-3 bg-emerald-500 text-white font-semibold rounded-xl"

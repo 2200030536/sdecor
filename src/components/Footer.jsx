@@ -4,24 +4,24 @@ import { MessageCircle, Camera, Globe, Play, Sparkles, Phone, Mail, MapPin } fro
 const footerLinks = {
   'Categories': [
     { label: 'Birthday Decoration', href: '/category/birthday' },
-    { label: 'Anniversary Setup',   href: '/category/anniversary' },
-    { label: 'Baby Shower',         href: '/category/baby-shower' },
-    { label: 'Wedding Decor',       href: '/category/wedding' },
-    { label: 'Engagement Decor',    href: '/category/engagement' },
+    { label: 'Anniversary Setup', href: '/category/anniversary' },
+    { label: 'Baby Shower', href: '/category/baby-shower' },
+    { label: 'Wedding Decor', href: '/category/wedding' },
+    { label: 'Engagement Decor', href: '/category/engagement' },
   ],
   'Quick Links': [
-    { label: 'All Packages',  href: '/' },
-    { label: 'How It Works',  href: '/#trust' },
-    { label: 'Reviews',       href: '/#reviews' },
-    { label: 'WhatsApp Us',   href: 'https://wa.me/919999999999' },
+    { label: 'All Packages', href: '/' },
+    { label: 'How It Works', href: '/#trust' },
+    { label: 'Reviews', href: '/#reviews' },
+    { label: 'WhatsApp Us', href: 'https://wa.me/919386738937' },
   ],
 };
 
 const trustStats = [
-  { value: '10,000+', label: 'Happy Customers' },
-  { value: '5 Years', label: 'Of Excellence' },
-  { value: '100%',    label: 'Same-Day Service' },
-  { value: '✓',       label: 'Lowest Price' },
+  { value: '100,000+', label: 'Happy Customers' },
+  { value: '12 Years', label: 'Of Excellence' },
+  { value: '100%', label: 'Same-Day Service' },
+  { value: '✓', label: 'Lowest Price' },
 ];
 
 export default function Footer() {
@@ -58,8 +58,8 @@ export default function Footer() {
             <div className="flex gap-3">
               {[
                 { icon: Camera, href: '#', color: 'hover:bg-pink-600' },
-                { icon: Globe,  href: '#', color: 'hover:bg-blue-600' },
-                { icon: Play,   href: '#', color: 'hover:bg-red-600' },
+                { icon: Globe, href: '#', color: 'hover:bg-blue-600' },
+                { icon: Play, href: '#', color: 'hover:bg-red-600' },
               ].map(({ icon: Icon, href, color }) => (
                 <a
                   key={href + color}
@@ -95,9 +95,9 @@ export default function Footer() {
           <div>
             <h4 className="font-bold text-white mb-4 text-sm uppercase tracking-wider">Contact Us</h4>
             <div className="space-y-3">
-              <a href="tel:+919999999999" className="flex items-center gap-3 text-gray-400 hover:text-white text-sm transition-colors">
+              <a href="tel:+919386738937" className="flex items-center gap-3 text-gray-400 hover:text-white text-sm transition-colors">
                 <Phone size={15} className="text-brand flex-shrink-0" />
-                +91 99999 99999
+                +91 93867 38937
               </a>
               <a href="mailto:hello@sdecor.in" className="flex items-center gap-3 text-gray-400 hover:text-white text-sm transition-colors">
                 <Mail size={15} className="text-brand flex-shrink-0" />
@@ -108,7 +108,7 @@ export default function Footer() {
                 Serving all of Patna, Bihar
               </div>
               <a
-                href="https://wa.me/919999999999"
+                href="https://wa.me/919386738937"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 mt-4 px-4 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-semibold rounded-xl transition-colors"

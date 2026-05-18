@@ -1,12 +1,12 @@
 import { Shield, Clock, BadgeDollarSign, Users, Smile, Star } from 'lucide-react';
 
 const stats = [
-  { icon: Users,          value: '10,000+', label: 'Happy Customers',      color: 'text-brand'   },
-  { icon: Star,           value: '4.9 ★',   label: 'Average Rating',       color: 'text-gold'    },
-  { icon: Clock,          value: 'Same Day', label: 'Service Guarantee',    color: 'text-violet'  },
-  { icon: BadgeDollarSign,value: 'Lowest',   label: 'Price Promise',        color: 'text-emerald' },
-  { icon: Shield,         value: '100%',     label: 'Safe & Trusted',       color: 'text-brand'   },
-  { icon: Smile,          value: '5 Years',  label: 'Of Excellence',        color: 'text-gold'    },
+  { icon: Users, value: '100,000+', label: 'Happy Customers', color: 'text-brand' },
+  { icon: Star, value: '4.9 ★', label: 'Average Rating', color: 'text-gold' },
+  { icon: Clock, value: 'Same Day', label: 'Service Guarantee', color: 'text-violet' },
+  { icon: BadgeDollarSign, value: 'Lowest', label: 'Price Promise', color: 'text-emerald' },
+  { icon: Shield, value: '100%', label: 'Safe & Trusted', color: 'text-brand' },
+  { icon: Smile, value: '12 Years', label: 'Of Excellence', color: 'text-gold' },
 ];
 
 export default function TrustBadges() {
@@ -46,9 +46,9 @@ export default function TrustBadges() {
         {/* Bottom guarantee strip */}
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4">
           {[
-            { emoji: '⚡', title: 'Same-Day Booking',    desc: 'Book before 2 PM for same-day decoration' },
-            { emoji: '💰', title: 'Lowest Price',         desc: 'Best price guaranteed or we match it' },
-            { emoji: '✨', title: 'Premium Quality',      desc: 'Only high-grade balloons & fresh flowers' },
+            { emoji: '⚡', title: 'Same-Day Booking', desc: 'Book before 2 PM for same-day decoration' },
+            { emoji: '💰', title: 'Lowest Price', desc: 'Best price guaranteed or we match it' },
+            { emoji: '✨', title: 'Premium Quality', desc: 'Only high-grade balloons & fresh flowers' },
           ].map(({ emoji, title, desc }) => (
             <div key={title} className="flex items-start gap-4 glass rounded-2xl p-5">
               <span className="text-3xl flex-shrink-0">{emoji}</span>

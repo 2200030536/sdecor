@@ -97,7 +97,7 @@ const localBusinessSchema = {
       closes: '22:00',
     },
   ],
-  sameAs: [`https://wa.me/919999999999`],
+  sameAs: [`https://wa.me/919386738937`],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'Event Decoration Packages',

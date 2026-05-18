@@ -12,12 +12,12 @@ import { uploadAPI } from '@/lib/api';
 function PreviewItem({ url, onRemove }) {
   const isVideo = /\.(mp4|mov|avi|webm)$/i.test(url);
   return (
-    <div className="relative group rounded-xl overflow-hidden border border-gray-200 bg-gray-50 aspect-square">
+    <div className="relative group rounded-xl overflow-hidden border border-gray-200 bg-gray-100 aspect-square">
       {isVideo ? (
-        <video src={url} className="w-full h-full object-cover" muted />
+        <video src={url} className="w-full h-full object-contain" muted />
       ) : (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={url} alt="Preview" className="w-full h-full object-cover" />
+        <img src={url} alt="Preview" className="w-full h-full object-contain" />
       )}
       {/* Hover overlay */}
       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">

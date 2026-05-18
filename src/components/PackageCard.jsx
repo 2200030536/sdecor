@@ -16,13 +16,19 @@ export default function PackageCard({ pkg }) {
       <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 card-hover group h-full flex flex-col">
         {/* Image */}
         <div className="relative aspect-[4/3] overflow-hidden bg-gray-100">
-          <Image
-            src={pkg.images[0]}
-            alt={pkg.title}
-            fill
-            className="object-cover group-hover:scale-105 transition-transform duration-500"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-          />
+          {pkg.images?.[0] ? (
+            <Image
+              src={pkg.images[0]}
+              alt={pkg.title}
+              fill
+              className="object-contain transition-transform duration-500"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            />
+          ) : (
+            <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center text-5xl">
+              🎀
+            </div>
+          )}
           {/* Gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
 
